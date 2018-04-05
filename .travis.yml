@@ -24,6 +24,10 @@ before_install:
   - "if [ $(phantomjs --version) != $PHANTOMJS_VERSION ]; then hash -r; fi"
   - "phantomjs --version"
 
+before_install:
+  - Rscript -e 'print(.libPaths())'
+  - Rscript -e 'print(installed.packages())'
+
 install:
   - Rscript -e 'install.packages(c("curl","devtools", "roxygen2", "stringr", "knitr", "data.table", "ordinal", "geosphere", "fields", "car", "pbkrtest", "quantreg", "reshape"))'
   - Rscript -e 'devtools::install_bioc(c("BiocInstaller", "rhdf5"))'
@@ -56,7 +60,7 @@ before_script:
 # install and test framework, modules, models, GUI
 script:
   - |
-    ECHO CACHE_NAME
+    echo $CACHE_NAME
     #install framework
     cd sources/framework/visioneval
     Rscript -e 'devtools::install_deps(".")'
@@ -87,4 +91,6 @@ script:
       Rscript -e "tryCatch( source( '$SCRIPT' ) )"
       exit_status=$?
     fi
-    exit $exit_status
+    
+after_success:
+  - echo $exit_status
