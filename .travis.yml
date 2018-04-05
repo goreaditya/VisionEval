@@ -60,7 +60,6 @@ before_script:
 # install and test framework, modules, models, GUI
 script:
   - |
-    echo $CACHE_NAME
     #install framework
     cd sources/framework/visioneval
     Rscript -e 'devtools::install_deps(".")'
@@ -80,17 +79,10 @@ script:
     done
     
     #run module or model tests
-    cd $FOLDER
-    if ( [ $TYPE == "module" ] ); then
-      Rscript -e 'devtools::install_deps(".")'
-      Rscript -e 'devtools::check(".")'
-      Rscript -e "tryCatch( source( '$SCRIPT' ) )"
-      R CMD INSTALL .
-      exit_status=$?
-    else
-      Rscript -e "tryCatch( source( '$SCRIPT' ) )"
-      exit_status=$?
-    fi
+  - cd $FOLDER
+  - if ( [ $TYPE == "module" ] ); then  Rscript -e 'devtools::install_deps(".")'; fi  
+  - if ( [ $TYPE == "module" ] ); then  Rscript -e 'devtools::check(".")'; fi
+  - if ( [ $TYPE == "module" ] ); then  Rscript -e "tryCatch( source( '$SCRIPT' ) )"; fi
+  - if ( [ $TYPE == "module" ] ); then  R CMD INSTALL .; fi
+  - if ( [ $TYPE == "model" ] ); then  Rscript -e "tryCatch( source( '$SCRIPT' ) )"; fi
     
-after_success:
-  - echo $exit_status
