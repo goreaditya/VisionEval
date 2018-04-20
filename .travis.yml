@@ -24,10 +24,6 @@ before_install:
   - "if [ $(phantomjs --version) != $PHANTOMJS_VERSION ]; then hash -r; fi"
   - "phantomjs --version"
 
-before_install:
-  - Rscript -e 'print(.libPaths())'
-  - Rscript -e 'print(installed.packages())'
-
 install:
   - Rscript -e 'install.packages(c("curl","devtools", "roxygen2", "stringr", "knitr", "data.table", "ordinal", "geosphere", "fields", "car", "pbkrtest", "quantreg", "reshape"))'
   - Rscript -e 'devtools::install_bioc(c("BiocInstaller", "rhdf5"))'
@@ -52,10 +48,6 @@ env:
    - FOLDER=sources/models/VERPAT                SCRIPT=run_model.R             TYPE=model       DEPENDS=VE2001NHTS,VESimHouseholds,VESyntheticFirms,VELandUse,VETransportSupply,VEHouseholdVehicles,VEHouseholdTravel,VETransportSupplyUse,VEReports
    - FOLDER=sources/models/VERSPM/Test1          SCRIPT=run_model.R             TYPE=model       DEPENDS=VE2001NHTS,VESimHouseholds,VELandUse,VETransportSupply,VEHouseholdVehicles,VEHouseholdTravel,VERoadPerformance,VEEnergyAndEmissions
    - FOLDER=sources/VEGUI                        SCRIPT=run_vegui_test.R        TYPE=model       DEPENDS=VE2001NHTS,VESimHouseholds,VESyntheticFirms,VELandUse,VETransportSupply,VEHouseholdVehicles,VEHouseholdTravel,VETransportSupplyUse,VEReports
-   
-before_script:
-  - Rscript -e 'print(.libPaths())'
-  - Rscript -e 'print(installed.packages())'
 
 # install and test framework, modules, models, GUI
 script:
