@@ -90,4 +90,4 @@ jobs:
       sh trigger-travis.sh --branch develop goreaditya VisionEval $TRAVIS_ACCESS_TOKEN "Running develop branch test"
       fi
 git:
-  depth: 9
+  depth: 8
