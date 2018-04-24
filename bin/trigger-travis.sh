@@ -39,7 +39,7 @@ fi
 
 body="{
 \"request\": {
-  \"branch\":\"$BRANCH\"
+  \"branch\":\"$BRANCH\",
   \"message\":\"$MESSAGE\"
 }}"
 
