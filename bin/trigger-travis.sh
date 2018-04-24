@@ -39,8 +39,8 @@ fi
 
 body="{
 \"request\": {
-  \"branch\":\"$BRANCH\",
-  \"message\":\"$MESSAGE\"
+  \"branch\":\"$BRANCH\"
+  $MESSAGE
 }}"
 
 # It does not work to put / in place of %2F in the URL below.  I'm not sure why.
