@@ -42,7 +42,11 @@ body="{
   \"branch\":\"$BRANCH\"
   $MESSAGE,
   \"config\": {
-    \"r\": \"3.4\"
+    \"r\": \"3.4\",
+	\"env\": [\"FOLDER=sources/framework/visioneval         SCRIPT=tests/scripts/test.R    TYPE=module      DEPENDS=\",
+	\"FOLDER=sources/modules/VESyntheticFirms     SCRIPT=tests/scripts/test.R    TYPE=module      DEPENDS=\",
+	\"FOLDER=sources/modules/VETransportSupplyUse SCRIPT=tests/scripts/test.R    TYPE=module      DEPENDS=\",
+	\"FOLDER=sources/modules/VERoadPerformance    SCRIPT=tests/scripts/test.R    TYPE=module      DEPENDS=\"]
   }
   }
 }"
