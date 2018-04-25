@@ -40,8 +40,12 @@ fi
 body="{
 \"request\": {
   \"branch\":\"$BRANCH\"
-  $MESSAGE
-}}"
+  $MESSAGE,
+  \"config\": {
+    \"r\": \"3.4\"
+  }
+  }
+}"
 
 # It does not work to put / in place of %2F in the URL below.  I'm not sure why.
 curl -s -X POST \
